@@ -109,13 +109,14 @@
 The accurate calibration of powder diffraction data acquired from area detectors
 using calibration standards is a crucial step in the data reduction process to
 attain high-quality one-dimensional patterns.  
-The precise determination of peak positions and intensities of a sample is
-required for any quantitative analysis, like e.g. the Rietveld refinement. 
+% The precise determination of peak positions and intensities of a sample is
+% required for any quantitative analysis, like e.g. the Rietveld refinement. 
 A novel algorithm was developed for extracting Debye-Scherrer rings
-automatically by using an approach based on well known \memosaadia{(Dr. Nazar
-says "well known" should be replaced by some synonym of "novel". As we have
-developed a new technique in CV, its not trivial in CV)} in computer vision and
-pattern recognition.    
+automatically by using an approach based 
+%on well known \memosaadia{(Dr. Nazar
+%says "well known" should be replaced by some synonym of "novel". As we have
+%developed a new technique in CV, its not trivial in CV)} 
+on computer vision and pattern recognition techniques.    
 The presented technique requires no human intervention and, unlike previous
 approaches, makes no restrictive assumptions on the diffraction setup and/or
 rings.  
@@ -188,9 +189,9 @@ setup and/or the diffraction rings.
 
 Several synchrotron sources are currently following update programs to face the
 new challenges posed by science and technology.  
-The instrumentation is also being upgraded, driven by the needs of the beamlines, 
-and notably in X-ray mirror engineering, diamond technologies, nano-focussing 
-optics, pixel detectors, on-line data analysis and high-rate data collections. 
+% The instrumentation is also being upgraded, driven by the needs of the beamlines, 
+% and notably in X-ray mirror engineering, diamond technologies, nano-focussing 
+% optics, pixel detectors, on-line data analysis and high-rate data collections. 
 The size of the beam is becoming of the same order of magnitude of the grains in
 the powder used. 
 In this case, the problem tends to become that of diffraction from single
@@ -227,8 +228,8 @@ schemes is discussed (section \ref{sec:compr}).
 
 
 \section{Computer-vision aided ring extraction}
-As mentioned in the introduction, detection of {\dsrs} is mandatory for the
-calibration of XRPD data. 
+As mentioned in the introduction, {\dsrs} fitting is the core of XRPD data
+calibration. 
 We propose a computer-vision-aided algorithm to automatically extract {\dsrs} in
 XRPD images. 
 The detection of these rings allows the calibration of the experiment
@@ -245,16 +246,18 @@ Our algorithm can be used to automate this process.
 \includegraphics[width=.85\linewidth]{Figures/dsrs_example.png}
 
 \label{fig:examples}
-\caption{
-Examples of \dsrs{}.}
+\caption{Examples of \dsrs{} images acquired on various synchrotron beamlines.}
 \end{figure}
 
-As shown in Figure \ref{fig:examples}, Segments of Debye-Scherrer rings can
+As shown in Figure \ref{fig:examples}, segments of Debye-Scherrer rings can
 appear in a wide variety of ways from almost circular to elliptical, parabolic
-and even almost linear (all these beams) The physical mechanism producing
-{\dsrs} does not necessarily produce contiguous patterns.   
-In addition, the detection apparatus can lead to both regular and irregular artifacts. 
-This makes the automatic detection of such rings or ring portions a challenging task.
+and even almost linear. 
+The modular structure of certain detectors (i.e. Pilatus detectors from Dectris) 
+may produce ring which do not appear to be contiguous.   
+% In addition, the detection apparatus can lead to both regular and irregular
+% artifacts.
+This makes the automatic detection of such rings or ring portions a challenging
+task. 
 
 Considerable research exists on the ellipse fitting problem when points
 representing an ellipse are provided \textit{a priori}
@@ -321,7 +324,7 @@ follows:
     I_{x,y} = \frac{I_{x,y} - \min(I)}{\max(I) - \min(I)} * 255    
 \end{align}
 
-We Smooth the image $I$ with rotationally symmetric Gaussian lowpass filter of
+We smooth the image $I$ with rotationally symmetric Gaussian lowpass filter of
 size 2x2 with one(1) standard deviation. 
 After that derivatives in $x$ and $y$ directions are computed using Equation
 (\ref{eq:gradX}) and Equation (\ref{eq:gradY}). 
